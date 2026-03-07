@@ -49,17 +49,10 @@ simulation.run_sim()
 
 price_fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths", "Distribution of terminal spot price"),horizontal_spacing=0.1,)
 
-    for i in range(numsims):
-        fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
+for i in range(numsims):
+    fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
 
-    fig.add_trace(
-        go.Histogram(
-            y=simulation.simulated_matrix[:,-1],
-            nbinsy=100
-        ),
-        row=1,
-        col=2
-    )
+fig.add_trace(go.Histogram(y=simulation.simulated_matrix[:,-1],nbinsy=100),row=1,col=2)
     
 
 st.plotly_chart(fig, use_container_width=True)
