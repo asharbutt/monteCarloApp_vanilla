@@ -38,7 +38,7 @@ r = st.sidebar.number_input("Risk-Free Rate", value=0.05, min_value=-0.05, max_v
 vol = st.sidebar.number_input("Volatility (σ)", value=0.20, min_value=0.01, max_value=2.0, step=0.01, format="%.2f")
 q = st.sidebar.number_input("Dividend Yield (q)", value=0.0, min_value=0.0, max_value=0.20, step=0.005, format="%.3f")
 numsims = int(st.sidebar.number_input("Number of Simulations", value=1, min_value=1, max_value=1000000000000, step=1, format="%.3f"))
-increment = st.sidebar.number_input("Increment as fraction of year", value=0.01, min_value=0.00000001, max_value=100000.0, step=0.0000001, format="%.3f")
+increment = st.sidebar.number_input("Increment as fraction of year", value=0.01, min_value=0.00000001, max_value=100000.0, step=0.0000001)
 
 #simulate the process paths
 
@@ -47,7 +47,7 @@ simulation = mc.monteCarlo(S,r,q,vol, T,increment,numsims, process_model)
 simulation.run_sim()
 
 
-fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths", "Distribution of terminal spot price"),horizontal_spacing=0.1,)
+fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths)", "Distribution of terminal spot price"),horizontal_spacing=0.1,)
 if numsims >= 2000:
     for i in range(2000):
         fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
