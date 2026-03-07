@@ -53,7 +53,7 @@ if numsims >= 2000:
         fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
 else:
     for i in range(numsims):
-    fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
+        fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
 fig.add_trace(go.Histogram(y=simulation.simulated_matrix[:,-1],nbinsy=100),row=1,col=2)
     
 
