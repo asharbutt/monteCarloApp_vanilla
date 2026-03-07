@@ -49,9 +49,10 @@ simulation.run_sim()
 
 fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths", "Distribution of terminal spot price"),horizontal_spacing=0.1,)
 if numsims >= 2000:
-for i in range(numsims):
-    fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:2000], mode="lines",name=f"path {i}"), row=1, col=1)
+    for i in range(2000):
+        fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
 else:
+    for i in range(numsims):
     fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
 fig.add_trace(go.Histogram(y=simulation.simulated_matrix[:,-1],nbinsy=100),row=1,col=2)
     
