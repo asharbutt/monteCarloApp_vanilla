@@ -43,7 +43,7 @@ increment = st.sidebar.number_input("Increment as fraction of year", value=0.0, 
 #simulate the process paths
 
 process_model = mc.GBMmodel(r,q,vol,T,increment) #we create an object for the process model we want (possibly change this to something else using a dropdown int he future)
-simulation = mc.monteCarlo(spot,r,q,vol, T,increment,numsims, process_model)
+simulation = mc.monteCarlo(S,r,q,vol, T,increment,numsims, process_model)
 simulation.run_sim()
 
 
