@@ -41,21 +41,3 @@ class monteCarlo:
 
 
 
-    time_array = np.arange(0,T,increment)
-    fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths", "Distribution of final S"),horizontal_spacing=0.1,)
-
-
-    for i in range(numsims):
-        fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
-
-    fig.add_trace(
-        go.Histogram(
-            y=simulation.simulated_matrix[:,-1],
-            nbinsy=100
-        ),
-        row=1,
-        col=2
-    )
-
-    fig.show()
-    print("Completed")
