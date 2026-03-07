@@ -37,7 +37,7 @@ T = st.sidebar.number_input("Time to Expiry (years)", value=1.0, min_value=0.01,
 r = st.sidebar.number_input("Risk-Free Rate", value=0.05, min_value=-0.05, max_value=0.30, step=0.005, format="%.3f")
 vol = st.sidebar.number_input("Volatility (σ)", value=0.20, min_value=0.01, max_value=2.0, step=0.01, format="%.2f")
 q = st.sidebar.number_input("Dividend Yield (q)", value=0.0, min_value=0.0, max_value=0.20, step=0.005, format="%.3f")
-numSims = st.sidebar.number_input("Number of Simulations", value=0.0, min_value=1, max_value=1000000000000, step=1, format="%.3f")
+numsims = int(st.sidebar.number_input("Number of Simulations", value=0.0, min_value=1, max_value=1000000000000, step=1, format="%.3f"))
 increment = st.sidebar.number_input("Increment as fraction of year", value=0.0, min_value=0.0, max_value=1000000000000, step=0.0000001, format="%.3f")
 
 #simulate the process paths
