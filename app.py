@@ -39,11 +39,14 @@ vol = st.sidebar.number_input("Volatility (σ)", value=0.20, min_value=0.01, max
 q = st.sidebar.number_input("Dividend Yield (q)", value=0.0, min_value=0.0, max_value=0.20, step=0.005, format="%.3f")
 numsims = int(st.sidebar.number_input("Number of Simulations", value=1, min_value=1, max_value=1000000000000, step=1))
 increment = st.sidebar.number_input("Increment as fraction of year", value=0.01, min_value=0.00000001, max_value=100000.0, step=0.0000001, format="%.3f")
-dropdown = st.sidebar.selectbox("Asset process" ( "Arithmetic Brownian Motion", "Geometric  Brownian Motion"))
+process_dropdown = st.sidebar.selectbox("Asset process" ( "Arithmetic Brownian Motion", "Geometric  Brownian Motion"))
 
 #simulate the process paths
 
-process_model = mc.GBMmodel(r,q,vol,T,increment) #we create an object for the process model we want (possibly change this to something else using a dropdown int he future)
+if process_dropdown == "Arithmetic Brownian Motion":
+    process_model = mc.arithmetic_model(r,q,vol,T,increment)
+else if process_dropdown == "Geometric  Brownian Motion":
+    process_model = mc.GBMmodel(r,q,vol,T,increment)  #we create an object for the process model we want (possibly change this to something else using a dropdown int he future)
 simulation = mc.monteCarlo(S,r,q,vol, T,increment,numsims, process_model)
 simulation.run_sim()
 
