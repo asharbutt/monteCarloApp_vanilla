@@ -46,7 +46,7 @@ process_dropdown = st.sidebar.selectbox("Asset process" ( "Arithmetic Brownian M
 if process_dropdown == "Arithmetic Brownian Motion":
     process_model = mc.arithmetic_model(r,q,vol,T,increment)
 elif process_dropdown == "Geometric  Brownian Motion":
-    process_model = mc.GBMmodel(r,q,vol,T,increment):  #we create an object for the process model we want (possibly change this to something else using a dropdown int he future)
+    process_model = mc.GBMmodel(r,q,vol,T,increment)  #we create an object for the process model we want (possibly change this to something else using a dropdown int he future)
 simulation = mc.monteCarlo(S,r,q,vol, T,increment,numsims, process_model)
 simulation.run_sim()
 
