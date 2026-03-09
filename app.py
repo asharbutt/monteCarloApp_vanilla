@@ -39,6 +39,7 @@ vol = st.sidebar.number_input("Volatility (σ)", value=0.20, min_value=0.01, max
 q = st.sidebar.number_input("Dividend Yield (q)", value=0.0, min_value=0.0, max_value=0.20, step=0.005, format="%.3f")
 numsims = int(st.sidebar.number_input("Number of Simulations", value=1, min_value=1, max_value=1000000000000, step=1))
 increment = st.sidebar.number_input("Increment as fraction of year", value=0.01, min_value=0.00000001, max_value=100000.0, step=0.0000001, format="%.3f")
+dropdown = st.sidebar.selectbox("Asset process" ( "Arithmetic Brownian Motion", "Geometric  Brownian Motion"))
 
 #simulate the process paths
 
