@@ -14,6 +14,18 @@ class GBMmodel:
     def get_step(self, spot):
         return (self.rate-self.divyield) * self.dt * spot + self.vol * spot * np.random.normal(0, 1) * np.sqrt(self.dt)
 
+class arithmetic_model:
+    def  __init__(self, r, q, vol, T, increment):
+        self.rate = r
+        self.divyield = q
+        self.vol = vol
+        self.maturity = T
+        self.dt = increment
+
+    def get_step(self, spot):
+        return (self.rate-self.divyield) * self.dt * spot + self.vol * spot * np.random.normal(0, 1) * np.sqrt(self.dt)
+
+
 class monteCarlo:
 
     def __init__(self, spot_0, r, q, vol, T, increment, num_sims, model):
