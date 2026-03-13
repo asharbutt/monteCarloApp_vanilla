@@ -53,7 +53,7 @@ simulation.run_sim()
 
 option_price = mc.price_mc_vanilla(simulation.final_vector, K, option_type, T, r)
 
-st.write("The option price is: " option_price)
+st.write("The option price is: ", option_price)
 
 fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths)", "Distribution of terminal spot price"),horizontal_spacing=0.1,)
 if numsims >= 2000:
