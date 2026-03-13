@@ -40,6 +40,7 @@ q = st.sidebar.number_input("Dividend Yield (q)", value=0.0, min_value=0.0, max_
 numsims = int(st.sidebar.number_input("Number of Simulations", value=1, min_value=1, max_value=1000000000000, step=1))
 increment = st.sidebar.number_input("Increment as fraction of year", value=0.01, min_value=0.00000001, max_value=100000.0, step=0.0000001, format="%.3f")
 process_dropdown = st.sidebar.selectbox("Asset process", ( "Arithmetic Brownian Motion", "Geometric  Brownian Motion"))
+option_type = st.sidebar.radio("Option Type", ["call", "put"])
 
 #simulate the process paths
 
@@ -49,6 +50,8 @@ elif process_dropdown == "Geometric  Brownian Motion":
     process_model = mc.GBMmodel(r,q,vol,T,increment)  #we create an object for the process model we want (possibly change this to something else using a dropdown int he future)
 simulation = mc.monteCarlo(S,r,q,vol, T,increment,numsims, process_model)
 simulation.run_sim()
+
+option_price = mc.price_mc_vanilla(simulation.final_vector, K, option_type, T, r)
 
 
 fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths)", "Distribution of terminal spot price"),horizontal_spacing=0.1,)
