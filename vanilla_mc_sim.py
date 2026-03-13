@@ -10,8 +10,10 @@ class GBMmodel:
         self.vol = vol
         self.maturity = T
         self.dt = increment
+
     def get_step(self, spot):
         return (self.rate-self.divyield) * self.dt * spot + self.vol * spot * np.random.normal(0, 1) * np.sqrt(self.dt)
+
 
 class arithmetic_model:
     def  __init__(self, r, q, vol, T, increment):
@@ -20,9 +22,9 @@ class arithmetic_model:
         self.vol = vol
         self.maturity = T
         self.dt = increment
-    def get_step(self, spot):
-        return (self.rate-self.divyield) * self.dt  + self.vol * np.random.normal(0, 1) * np.sqrt(self.dt)
 
+    def get_step(self, spot):
+        return (self.rate-self.divyield) * self.dt + self.vol * np.random.normal(0, 1) * np.sqrt(self.dt)
 
 class monteCarlo:
 
@@ -34,7 +36,7 @@ class monteCarlo:
         self.maturity = T
         self.dt = increment
         self.num_sims = num_sims
-        self.simulated_matrix = np.zeros((self.num_sims, int(self.maturity / self.dt)))
+        self.simulated_matrix = np.zeros((self.num_sims, int(self.maturity / self.dt)+1))
         self.simulated_matrix[:, 0] = self.initial_spot
 
         self.process_model = model
@@ -44,10 +46,18 @@ class monteCarlo:
     def run_sim(self):
         for i in range(self.num_sims):
             spot = self.initial_spot
-            for j in range(1, int(self.maturity / self.dt)):
+            for j in range(1, int(self.maturity / self.dt)+1):
                 dS = self.process_model.get_step(spot)
                 spot += dS
-                self.simulated_matrix [i][j] = spot
+                self.simulated_matrix [i, j] = spot
 
+        self.final_vector = self.simulated_matrix[:, -1]
 
+def price_mc_vanilla(mc_final_vector, strike, option_flag, T,r):
+    if option_flag == "call": flag = 1
+    else: flag = -1
+    payoff_vector = np.zeros(len(mc_final_vector))
+    payoff_vector = np.maximum(flag*(mc_final_vector-strike),0)
+
+    return np.exp(-r*T)*np.mean(payoff_vector)
 
