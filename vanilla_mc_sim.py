@@ -53,6 +53,8 @@ class monteCarlo:
 
         self.final_vector = self.simulated_matrix[:, -1]
 
+
+
 def price_mc_vanilla(mc_final_vector, strike, option_flag, T,r):
     if option_flag == "call": flag = 1
     else: flag = -1
