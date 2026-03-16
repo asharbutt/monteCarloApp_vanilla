@@ -67,7 +67,6 @@ fig.update_layout(showlegend=False)
 
 st.plotly_chart(fig, use_container_width=True)
 
-#price the greeks across the spot range and then plot them
 
 
 
