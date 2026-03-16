@@ -65,7 +65,7 @@ else:
 fig.add_trace(go.Histogram(y=simulation.simulated_matrix[:,-1],nbinsy=100),row=1,col=2)
 fig.update_layout(showlegend=False)    
 
-st.plotly_chart(fig, width="stretch", height=500)
+st.plotly_chart(fig, width="stretch", height=750)
 
 
 
