@@ -12,8 +12,8 @@ class GBMmodel:
         self.maturity = T
         self.dt = increment
 
-    def get_step(self, spot):
-        return (self.rate-self.divyield) * self.dt * spot + self.vol * spot * np.random.normal(0, 1) * np.sqrt(self.dt)
+    def get_step(self, spot, rv):
+        return (self.rate-self.divyield) * self.dt * spot + self.vol * spot * rv * np.sqrt(self.dt)
 
 
 class arithmetic_model:
@@ -24,8 +24,8 @@ class arithmetic_model:
         self.maturity = T
         self.dt = increment
 
-    def get_step(self, spot):
-        return (self.rate-self.divyield) * self.dt + self.vol * np.random.normal(0, 1) * np.sqrt(self.dt)
+    def get_step(self, spot, rv):
+        return (self.rate-self.divyield) * self.dt + self.vol * rv * np.sqrt(self.dt)
 
 class monteCarlo:
 
