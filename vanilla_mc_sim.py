@@ -56,7 +56,7 @@ class monteCarlo:
                     spot_down += dS_2
                     self.simulated_matrix [i, j] = spot_up
                     self.simulated_matrix[i + num_sims, j] = spot_down
-        self.final_vector = self.simulated_matrix[:, -1]
+            self.final_vector = self.simulated_matrix[:, -1]
 
 def bs_price(type_flag, S,k,t,r,vol,q):
     if type_flag == 'call':
