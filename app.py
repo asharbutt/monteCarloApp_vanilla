@@ -51,11 +51,16 @@ elif process_dropdown == "Geometric  Brownian Motion":
 simulation = mc.monteCarlo(S,r,q,vol, T,increment,numsims, process_model)
 simulation.run_sim()
 
-option_price = mc.price_mc_vanilla(simulation.final_vector, K, option_type, T, r)
+option_price, payoff_vector = mc.price_mc_vanilla(simulation.final_vector, K, option_type, T, r)
+
+convergence_vector = np.zeros(num_sims * 2)
+convergence_vector = np.cumsum(payoff_vector) / np.arange(1, len(payoff_vector) + 1, 1)
+
+bs_value = bs_price(option_type, S,K,T,r,vol,q)
 
 st.write("The option price is: ", f"{option_price:.4f}")
 
-fig = make_subplots(rows=1, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths)", "Distribution of terminal spot price"),horizontal_spacing=0,)
+fig = make_subplots(rows=2, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths)", "Distribution of terminal spot price"),horizontal_spacing=0,)
 if numsims >= 2000:
     for i in range(2000):
         fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
@@ -63,6 +68,11 @@ else:
     for i in range(numsims):
         fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
 fig.add_trace(go.Histogram(y=simulation.simulated_matrix[:,-1],nbinsy=150),row=1,col=2)
+
+fig.add_trace(go.Scatter(y=convergence_vector, mode="lines",name=f"path {i}"), row=2, col=1)
+fig.add_hline(y=bs_value, line_color="grey",row=2,col=1) #added this to make the y-axis a lot more solid around y=0
+
+
 fig.update_layout(showlegend=False)    
 fig.update_yaxes(showticklabels=False, showgrid=False, zeroline=False, row=1, col=2)
 
