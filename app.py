@@ -53,7 +53,7 @@ simulation.run_sim()
 
 option_price, payoff_vector = mc.price_mc_vanilla(simulation.final_vector, K, option_type, T, r)
 
-convergence_vector = np.zeros(num_sims * 2)
+convergence_vector = np.zeros(numsims * 2)
 convergence_vector = np.cumsum(payoff_vector) / np.arange(1, len(payoff_vector) + 1, 1)
 
 bs_value = bs_price(option_type, S,K,T,r,vol,q)
