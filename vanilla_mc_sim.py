@@ -76,5 +76,5 @@ def price_mc_vanilla(mc_final_vector, strike, option_flag, T,r):
     payoff_vector = np.zeros(len(mc_final_vector))
     payoff_vector = np.maximum(flag*(mc_final_vector-strike),0)
 
-    return np.exp(-r*T)*np.mean(payoff_vector)
+    return np.exp(-r*T)*np.mean(payoff_vector), payoff_vector
 
