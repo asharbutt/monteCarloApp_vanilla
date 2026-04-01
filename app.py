@@ -56,7 +56,7 @@ option_price, payoff_vector = mc.price_mc_vanilla(simulation.final_vector, K, op
 convergence_vector = np.zeros(numsims * 2)
 convergence_vector = np.cumsum(payoff_vector) / np.arange(1, len(payoff_vector) + 1, 1)
 
-bs_value = bs_price(option_type, S,K,T,r,vol,q)
+bs_value = mc.bs_price(option_type, S,K,T,r,vol,q)
 
 st.write("The option price is: ", f"{option_price:.4f}")
 
