@@ -60,7 +60,7 @@ bs_value = mc.bs_price(option_type, S,K,T,r,vol,q)
 
 st.write("The option price is: ", f"{option_price:.4f}")
 
-fig = make_subplots(rows=2, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths)", "Distribution of terminal spot price"),horizontal_spacing=0,)
+fig = make_subplots(rows=2, cols=2,subplot_titles=("Simulated Paths (Visualisation limited to 2000 paths)", "Distribution of terminal spot price", "Convergence of simulated average payoff to BS price"),horizontal_spacing=0,)
 if numsims >= 2000:
     for i in range(2000):
         fig.add_trace(go.Scatter(y=simulation.simulated_matrix[i,:], mode="lines",name=f"path {i}"), row=1, col=1)
