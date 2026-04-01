@@ -44,7 +44,7 @@ class monteCarlo:
 
 
 
-        def run_sim(self):
+    def run_sim(self):
             for i in range(self.num_sims):
                 spot_up = self.initial_spot
                 spot_down = self.initial_spot
@@ -56,7 +56,7 @@ class monteCarlo:
                     spot_down += dS_2
                     self.simulated_matrix [i, j] = spot_up
                     self.simulated_matrix[i + num_sims, j] = spot_down
-            self.final_vector = self.simulated_matrix[:, -1]
+    self.final_vector = self.simulated_matrix[:, -1]
 
 def bs_price(type_flag, S,k,t,r,vol,q):
     if type_flag == 'call':
