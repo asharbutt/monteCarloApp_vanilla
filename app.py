@@ -24,7 +24,7 @@ st.set_page_config(
 st.title("Monte Carlo Simulator")
 st.markdown("Vanilla European Option Pricer using MC")
 
-
+st.markdown("We use Antithetic variables to increase the number of simulations at a reduced time i.e. for every run and standard normal value generated, the negative of that value is taken to generate another path, hence you will see N*2 number of simulations in the convergence plot")
 # ══════════════════════════════════════════════════
 # SIDEBAR: INPUT PARAMETERS
 # ══════════════════════════════════════════════════
